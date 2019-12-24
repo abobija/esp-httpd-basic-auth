@@ -1,7 +1,7 @@
 #include "httpd_basic_auth.h"
 #include "b64.h"
 
-esp_err_t httpd_resp_send_401_basic_auth_err(httpd_req_t* req) {
+esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req) {
 	esp_err_t ret = httpd_resp_set_status(req, HTTPD_401);
 
 	if(ret == ESP_OK) {

@@ -16,7 +16,7 @@ extern "C" {
 	#define HTTPD_401 "401 Unauthorized"
 #endif
 
-esp_err_t httpd_resp_send_401_basic_auth_err(httpd_req_t* req);
+esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req);
 esp_err_t httpd_basic_auth(httpd_req_t* req, const char* username, const char* password);
 
 #ifdef __cplusplus

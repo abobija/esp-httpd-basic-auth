@@ -18,7 +18,7 @@ static esp_err_t index_handler(httpd_req_t *req) {
 	if(httpd_basic_auth(req, "admin", "test") == ESP_OK) {
 		httpd_resp_sendstr(req, "Authorized");
 	} else {
-		httpd_resp_send_401_basic_auth_err(req);
+		httpd_basic_auth_resp_send_401(req);
 		httpd_resp_sendstr(req, "Not Authorized");
 		return ESP_FAIL;
 	}
