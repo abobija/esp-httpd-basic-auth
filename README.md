@@ -1,5 +1,5 @@
 # esp-httpd-basic-auth
-Httpd Server wrapper for Basic Authorization Security, packaged as ESP-IDF component
+Wrapper around Httpd which purpose is to secure the Server with a Basic Authorization, packaged as ESP-IDF component
 
 ## How to use
 
