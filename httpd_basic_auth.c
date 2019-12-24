@@ -28,8 +28,12 @@ esp_err_t httpd_basic_auth(httpd_req_t* req, const char* username, const char* p
 		return ESP_ERR_HTTPD_BASIC_AUTH_FAIL_TO_GET_HEADER;
 	}
 
-	size_t decoded_len;
-	unsigned char* decoded = b64_decode((const unsigned char*) (auth_head + 6), auth_head_len - 6 - 1, &decoded_len);
+	if(strncmp("Basic", auth_head, 5) != 0) {
+		free(auth_head);
+		return ESP_ERR_HTTPD_BASIC_AUTH_HEADER_INVALID;
+	}
+
+	unsigned char* decoded = b64_decode((const unsigned char*) (auth_head + 6), auth_head_len - 6 - 1, NULL);
 	free(auth_head);
 
 	if(decoded == NULL) {
