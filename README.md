@@ -9,6 +9,8 @@ Make sure that you have [`b64`](https://github.com/abobija/esp-idf-b64) componen
 
 ## Example
 
+This example will protect uri `/` with username `admin` and password `test`.
+
 ```c
 #include "httpd_basic_auth.h"
 
