@@ -8,7 +8,7 @@ This directory is an ESP-IDF component. Clone it (or add it as submodule) into `
 Don't forget to provide `--recursive` flag in time of cloning.
 
 ```
-git clone --recursive https://github.com/abobija/esp-httpd-basic-auth.git httpd-basic-auth
+git clone --recursive https://github.com/abobija/esp-httpd-basic-auth.git httpd_basic_auth
 ```
 
 ## Example
