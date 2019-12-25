@@ -30,7 +30,7 @@ extern "C" {
  * @param[in] req The request being responded to
  * 
  * @return
- * 	- ESP_OK on success
+ *  - ESP_OK on success
  */ 
 esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req);
 
@@ -41,12 +41,12 @@ esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req);
  * @param[in] password Password
  * 
  * @return
- * 	- ESP_OK user is authorized
+ *  - ESP_OK user is authorized
  *  - ESP_ERR_HTTPD_BASIC_AUTH_HEADER_NOT_FOUND authorization header is not provided in request
- * 	- ESP_ERR_NO_MEM no memory
- * 	- ESP_ERR_HTTPD_BASIC_AUTH_FAIL_TO_GET_HEADER fail to read authorization header
- * 	- ESP_ERR_HTTPD_BASIC_AUTH_HEADER_INVALID invalid format of authorization header
- * 	- ESP_ERR_HTTPD_BASIC_AUTH_NOT_AUTHORIZED not authorized
+ *   ESP_ERR_NO_MEM no memory
+ *  - ESP_ERR_HTTPD_BASIC_AUTH_FAIL_TO_GET_HEADER fail to read authorization header
+ *   ESP_ERR_HTTPD_BASIC_AUTH_HEADER_INVALID invalid format of authorization header
+ *  - ESP_ERR_HTTPD_BASIC_AUTH_NOT_AUTHORIZED not authorized
  */ 
 esp_err_t httpd_basic_auth(httpd_req_t* req, const char* username, const char* password);
 
