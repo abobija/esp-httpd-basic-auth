@@ -1,6 +1,10 @@
 #include "httpd_basic_auth.h"
 #include "b64.h"
 
+#include "esp_log.h"
+
+static const char *TAG = "httpd_basic_auth";
+
 esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req) {
 	esp_err_t ret = httpd_resp_set_status(req, HTTPD_401);
 
@@ -23,22 +27,30 @@ esp_err_t httpd_basic_auth(httpd_req_t* req, const char* username, const char* p
 
 	char* auth_head = malloc(auth_head_len);
 
+	if(auth_head == NULL) {
+		return ESP_ERR_NO_MEM;
+	}
+
 	if(httpd_req_get_hdr_value_str(req, "Authorization", auth_head, auth_head_len) != ESP_OK) {
 		free(auth_head);
 		return ESP_ERR_HTTPD_BASIC_AUTH_FAIL_TO_GET_HEADER;
 	}
 
+	ESP_LOGD(TAG, "Header: '%s'", auth_head);
+
 	if(strncmp("Basic", auth_head, 5) != 0) {
 		free(auth_head);
 		return ESP_ERR_HTTPD_BASIC_AUTH_HEADER_INVALID;
 	}
-
+	
 	unsigned char* decoded = b64_decode((const unsigned char*) (auth_head + 6), auth_head_len - 6 - 1, NULL);
 	free(auth_head);
 
 	if(decoded == NULL) {
 		return ESP_ERR_HTTPD_BASIC_AUTH_HEADER_INVALID;
 	}
+
+	ESP_LOGD(TAG, "Decoded: '%s'", decoded);
 
 	char* colonDelimiter = strchr((const char*) decoded, ':');
 
