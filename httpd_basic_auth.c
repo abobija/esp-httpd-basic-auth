@@ -17,10 +17,7 @@ esp_err_t httpd_basic_auth_resp_send_401(httpd_req_t* req) {
 
 esp_err_t httpd_basic_auth(httpd_req_t* req, const char* username, const char* password) {
 	size_t auth_head_len = 1 + httpd_req_get_hdr_value_len(req, "Authorization");
-
-	// Authorization header value needs to start with "Basic "
-	// so value of authorization header needs to be at least 7 chars long
-
+	
 	if(auth_head_len <= 1 + 7) {
 		return ESP_ERR_HTTPD_BASIC_AUTH_HEADER_NOT_FOUND;
 	}
